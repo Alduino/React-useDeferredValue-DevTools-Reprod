@@ -9,9 +9,13 @@ import {useDeferredValue, useMemo} from "react";
 function App() {
     useDeferredValue("");
 
-    useMemo(() => {
+    const first = useMemo(() => {
         return 1.41;
     }, []);
+
+    if (window.throwIfIncorrect && first !== 1.41) {
+        throw new Error(`First is ${first} when it should be 1.41`);
+    }
 
     useMemo(() => {
         return 3.14;
